@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import './widget/bottom_bar.dart';
-import 'quest_list.dart';
-import 'profile.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'screen/splash.dart';
+import 'screen/tab_view_wrapper.dart';
+import 'package:get/get.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
+  @override
   _MyAppState createState() => _MyAppState();
 }
 
@@ -24,29 +24,14 @@ class _MyAppState extends State<MyApp> {
       designSize: const Size(360,690),
       minTextAdapt: true,
       builder: () =>
-        MaterialApp(
+        GetMaterialApp(
         title: 'Latte',
         theme: ThemeData(
           brightness: Brightness.light,
           primaryColor: Colors.black,
         ),
-        home: SafeArea(
-          child:
-            DefaultTabController(
-            initialIndex: 1,
-            length: 2,
-            child: Scaffold(
-              body: TabBarView(
-                physics: NeverScrollableScrollPhysics(),
-                children: <Widget>[
-                  Profile(),
-                  QuestList(),
-                ],
-              ),
-              bottomNavigationBar: Bottom(), 
-            ),
-          ), 
-        )
+        home: LatteSplashScreen()
+        // home: TabViewWrapper()
       )
     );
   }
